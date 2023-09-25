@@ -22,13 +22,13 @@ def process_salary(value):
             elif value[0] == 'до ':  
                 sal_max = value[1].replace('\xa0', '')
             currency = value[-1]
-        return {'Мин.плата': int(sal_min), 'Макс.плата': int(sal_max), 'Валюта': currency}
+        return {'Мин.': int(sal_min), 'Макс.': int(sal_max), 'Валюта': currency}
 
 '''Функция корректировки названия компании.
-При парсинге наименование(ия) задваивается(ются).'''
+Приводим получаемый список в единый текст.'''
 def process_company(value):
     if value:
-        return ' '.join(value[0: -len(value)])
+        return ' '.join(value).replace('\xa0', ' ')
 
 '''Функция корректировки описания.
 Приводим получаемый список в единый текст.'''
@@ -47,7 +47,7 @@ def process_date(value):
 class VacancyParserItem(scrapy.Item):
     name = scrapy.Field(output_processor=TakeFirst())
     salary = scrapy.Field(input_processor=Compose(process_salary), output_processor=TakeFirst())
-    company = scrapy.Field(output_processor=TakeFirst())
+    company = scrapy.Field(input_processor=Compose(process_company), output_processor=TakeFirst())
     location = scrapy.Field(output_processor=TakeFirst())
     experience = scrapy.Field(output_processor=TakeFirst())
     description = scrapy.Field(input_processor=Compose(process_description), output_processor=TakeFirst())
