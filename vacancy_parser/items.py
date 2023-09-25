@@ -49,6 +49,7 @@ class VacancyParserItem(scrapy.Item):
     salary = scrapy.Field(input_processor=Compose(process_salary), output_processor=TakeFirst())
     company = scrapy.Field(output_processor=TakeFirst())
     location = scrapy.Field(output_processor=TakeFirst())
+    experience = scrapy.Field(output_processor=TakeFirst())
     description = scrapy.Field(input_processor=Compose(process_description), output_processor=TakeFirst())
     date = scrapy.Field(input_processor=Compose(process_date), output_processor=TakeFirst())
     url = scrapy.Field(output_processor=TakeFirst())
