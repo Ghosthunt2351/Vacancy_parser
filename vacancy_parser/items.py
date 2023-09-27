@@ -22,6 +22,8 @@ def process_salary(value):
             elif value[0] == 'до ':  
                 sal_max = value[1].replace('\xa0', '')
             currency = value[-1]
+        else:
+            return {'З/п': 'з/п не указана'}
         return {'Мин.': int(sal_min), 'Макс.': int(sal_max), 'Валюта': currency}
 
 '''Функция корректировки названия компании.
