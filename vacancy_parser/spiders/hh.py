@@ -42,7 +42,7 @@ class HhSpider(scrapy.Spider):
         loader.add_xpath('salary', "//div[@data-qa='vacancy-salary']/span/text()")
         loader.add_xpath('company', "//a[@data-qa='vacancy-company-name']/span/span/text() | //a[@data-qa='vacancy-company-name']/span/text()")
         loader.add_xpath('location', "//p[@data-qa='vacancy-view-location']/text() | //span[@data-qa='vacancy-view-raw-address']/text()")
-	loader.add_xpath('experience', "//span[@data-qa='vacancy-experience']/text()")
+        loader.add_xpath('experience', "//span[@data-qa='vacancy-experience']/text()")
         loader.add_xpath('description', "//div[@data-qa='vacancy-description']//p/text() | //div[@data-qa='vacancy-description']//li/text()")
         loader.add_xpath('date', "//p[@class='vacancy-creation-time-redesigned']/span/text()")
         loader.add_value('url', response.url)
